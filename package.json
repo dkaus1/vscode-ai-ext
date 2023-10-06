@@ -1,0 +1,319 @@
+{
+	"name": "aicodecompanion",
+	"displayName": "AI Code Companion",
+	"description": "This extension enables Engineers, Architects to enhance their productivity by using the power of OpenAI APIs without worrying of their data privacy.",
+	"version": "1.4.0",
+	"engines": {
+		"vscode": "^1.74.0"
+	},
+	"categories": [
+		"Programming Languages",
+		"Machine Learning",
+		"Testing",
+		"Linters",
+		"Formatters",
+		"Education",
+		"Data Science",
+		"Debuggers"
+	],
+	"main": "./extension.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/vikash-bhardwaj/ai-code-companion-documentation"
+	},
+	"license": "Mozilla Public License 2.0",
+	"privacy": "https://vikash-bhardwaj.github.io/ai-code-companion-documentation/privacy-policy",
+	"publisher": "vikash-bhardwaj",
+	"icon": "assets/icons/logo.png",
+	"activationEvents": [
+		"onCommand:aicodecompanion.setAccessKey",
+		"onCommand:aicodecompanion.removeAccessKey",
+		"onCommand:aicodecompanion.openAICodeCompanion"
+	],
+	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "customViewContainer",
+					"title": "AI Code Companion",
+					"icon": "./assets/icons/icon-chat.png"
+				}
+			]
+		},
+		"views": {
+			"customViewContainer": [
+				{
+					"id": "aicodecompanion.chatView",
+					"name": "Your coding companion",
+					"type": "webview",
+					"retainContextWhenHidden": true
+				}
+			]
+		},
+		"menus": {
+			"editor/context": [
+				{
+					"group": "1_editor",
+					"submenu": "aicodecompanion.menuitems"
+				}
+			],
+			"view/title": [
+				{
+					"command": "aicodecompanion.deleteChatHistory",
+					"group": "navigation",
+					"when": "view == aicodecompanion.chatView"
+				},
+				{
+					"command": "aicodecompanion.openAICodeCompanionSettings",
+					"group": "navigation",
+					"when": "view == aicodecompanion.chatView"
+				},
+				{
+					"command": "aicodecompanion.createGitChangesNotes",
+					"when": "view == aicodecompanion.chatView"
+				}
+			],
+			"aicodecompanion.menuitems": [
+				{
+					"command": "aicodecompanion.askAICodeCompanion",
+					"group": "1_editor"
+				},
+				{
+					"command": "aicodecompanion.documentCode",
+					"group": "1_editor",
+					"when": "editorHasSelection"
+				},
+				{
+					"command": "aicodecompanion.explainCode",
+					"group": "1_editor",
+					"when": "editorHasSelection"
+				},
+				{
+					"command": "aicodecompanion.findProblemsCode",
+					"group": "1_editor",
+					"when": "editorHasSelection"
+				},
+				{
+					"command": "aicodecompanion.refactorCode",
+					"group": "1_editor",
+					"when": "editorHasSelection"
+				},
+				{
+					"command": "aicodecompanion.writeUnitTests",
+					"group": "1_editor",
+					"when": "editorHasSelection"
+				},
+				{
+					"command": "aicodecompanion.writeE2ETests",
+					"group": "1_editor",
+					"when": "editorHasSelection"
+				}
+			]
+		},
+		"submenus": [
+			{
+				"id": "aicodecompanion.menuitems",
+				"label": "AI Code Companion"
+			}
+		],
+		"commands": [
+			{
+				"command": "aicodecompanion.setAccessKey",
+				"title": "Set Access Key",
+				"category": "AI Code Companion"
+			},
+			{
+				"command": "aicodecompanion.removeAccessKey",
+				"title": "Remove Access Key",
+				"category": "AI Code Companion"
+			},
+			{
+				"command": "aicodecompanion.askAICodeCompanion",
+				"title": "Ask AI Code Companion",
+				"category": "AI Code Companion"
+			},
+			{
+				"command": "aicodecompanion.refactorCode",
+				"title": "Refactor Selected Code",
+				"category": "AI Code Companion"
+			},
+			{
+				"command": "aicodecompanion.explainCode",
+				"title": "Explain Selected Code",
+				"category": "AI Code Companion"
+			},
+			{
+				"command": "aicodecompanion.documentCode",
+				"title": "Document Selected Code",
+				"category": "AI Code Companion"
+			},
+			{
+				"command": "aicodecompanion.findProblemsCode",
+				"title": "Find Problems in Selected Code",
+				"category": "AI Code Companion"
+			},
+			{
+				"command": "aicodecompanion.writeUnitTests",
+				"title": "Write Unit Tests for Selected Code",
+				"category": "AI Code Companion"
+			},
+			{
+				"command": "aicodecompanion.writeE2ETests",
+				"title": "Write E2E Tests for Selected Code",
+				"category": "AI Code Companion"
+			},
+			{
+				"command": "aicodecompanion.openAICodeCompanion",
+				"title": "Open AI Code Companion Chat",
+				"category": "AI Code Companion"
+			},
+			{
+				"command": "aicodecompanion.openAICodeCompanionSettings",
+				"title": "Open Extension Settings",
+				"category": "AI Code Companion",
+				"icon": {
+					"dark": "./assets-webview/icons/icon-settings-white.png",
+					"light": "./assets-webview/icons/icon-settings-black.png"
+				}
+			},
+			{
+				"command": "aicodecompanion.deleteChatHistory",
+				"title": "Delete History",
+				"category": "AI Code Companion",
+				"icon": {
+					"dark": "./assets-webview/icons/icon-delete-white.png",
+					"light": "./assets-webview/icons/icon-delete-black.png"
+				}
+			},
+			{
+				"command": "aicodecompanion.executePromptCommand",
+				"title": "Execute Prompt Command from Comment",
+				"category": "AI Code Companion"
+			},
+			{
+				"command": "aicodecompanion.abortPromptRequest",
+				"title": "Abort Prompt API Request",
+				"category": "AI Code Companion"
+			},
+			{
+				"command": "aicodecompanion.createGitChangesNotes",
+				"title": "Review Git Changes and create notes for your PR",
+				"category": "AI Code Companion"
+			},
+			{
+				"command": "aicodecompanion.resetTestingLibrariesOptions",
+				"title": "Reset Testing Libraries Options for Unit and E2E Tests",
+				"category": "AI Code Companion"
+			}
+		],
+		"configuration": {
+			"title": "AICodeCompanion",
+			"properties": {
+				"AICodeCompanion.apiKey": {
+					"type": "string",
+					"default": "MyAPI",
+					"description": "To enter your API Key press cmd+shift+p and search for 'AI Code Companion: Set API KEY', Select your AI provider:",
+					"enum": [
+						"OpenAI",
+						"PSChat",
+						"MyAPI"
+					],
+					"enumDescriptions": [
+						"Select this option if your AI Data provider is OpenAI",
+						"Select this option if your AI Data provider is PSChat",
+						"Select this option if your AI Data provider is MyAPI"
+					]
+				},
+				"AICodeCompanion.modelName": {
+					"type": "string",
+					"default": "gpt-3.5-turbo",
+					"description": "Specify the OpenAI model name to use"
+				},
+				"AICodeCompanion.maxTokens": {
+					"type": "number",
+					"default": 800,
+					"description": "The maximum number of tokens for each request"
+				},
+				"AICodeCompanion.modelMaxTokensLength": {
+					"type": "number",
+					"default": 4096,
+					"description": "The maximum number of tokens allowed for the model, going to be used for logic to trim chat history"
+				},
+				"AICodeCompanion.temperature": {
+					"type": "number",
+					"default": 0.5,
+					"description": "The temperature, must be between 0 and 1",
+					"minimum": 0,
+					"maximum": 1
+				},
+				"AICodeCompanion.top_p": {
+					"type": "number",
+					"default": 0.6,
+					"description": "The top_p, must be between 0 and 1",
+					"minimum": 0,
+					"maximum": 1
+				}
+			}
+		},
+		"keybindings": [
+			{
+				"command": "aicodecompanion.executePromptCommand",
+				"key": "ctrl+alt+enter",
+				"when": "editorTextFocus"
+			}
+		],
+		"icons": {
+			"extension-icon": {
+				"description": "Extension Icon",
+				"default": {
+					"fontPath": "./assets/fonts/icon-chat.woff",
+					"fontCharacter": "\\E800"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"pretest": "yarn run lint",
+		"test": "node ./test/runTest.js",
+		"build": "webpack --watch --config webpack.config.js",
+		"package": "vsce package --githubBranch=main",
+		"publish": "vsce publish --githubBranch=main"
+	},
+	"dependencies": {
+		"@babel/core": "^7.22.5",
+		"@babel/preset-env": "^7.22.5",
+		"@vscode/codicons": "^0.0.33",
+		"babel-loader": "^9.1.2",
+		"he": "^1.2.0",
+		"marked": "^5.1.0",
+		"marked-gfm-heading-id": "^3.0.4",
+		"marked-mangle": "^1.1.0",
+		"node-abort-controller": "^3.1.1",
+		"node-fetch": "^2.6.7"
+	},
+	"devDependencies": {
+		"@types/glob": "^8.1.0",
+		"@types/mocha": "^10.0.1",
+		"@types/node": "20.2.5",
+		"@types/vscode": "^1.74.0",
+		"@vscode/test-electron": "^2.3.2",
+		"eslint": "^8.41.0",
+		"glob": "^8.1.0",
+		"html-webpack-plugin": "^5.5.3",
+		"mocha": "^10.2.0",
+		"typescript": "^5.1.3",
+		"webpack": "^5.88.0",
+		"webpack-cli": "^5.1.4"
+	},
+	"__metadata": {
+		"id": "ec471c94-beac-4cab-b82d-62980e2bc809",
+		"publisherId": "c6ce8575-7e0d-4a0b-953c-8ae2fc804770",
+		"publisherDisplayName": "vikash-bhardwaj",
+		"targetPlatform": "undefined",
+		"updated": false,
+		"isPreReleaseVersion": false,
+		"installedTimestamp": 1696233541692,
+		"preRelease": false
+	}
+}

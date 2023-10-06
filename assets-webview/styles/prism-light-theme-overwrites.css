@@ -1,0 +1,29 @@
+/**
+ * Overwrites for light and high contrast light theme
+ */
+
+.vscode-light code[class*="language-"],
+.vscode-light pre[class*="language-"],
+.vscode-high-contrast-light code[class*="language-"],
+.vscode-high-contrast-light pre[class*="language-"] {
+  text-shadow: none;
+}
+
+.vscode-light .codeblock-header-wrapper,
+.vscode-high-contrast-light .codeblock-header-wrapper {
+  background-color: hsl(230, 1%, 98%);
+}
+
+.vscode-light pre[class*="language-"],
+.vscode-light .codeblock-header-wrapper,
+.vscode-high-contrast-light pre[class*="language-"],
+.vscode-high-contrast-light .codeblock-header-wrapper {
+  box-shadow: 1px 1px 0.3em #939393 inset;
+}
+
+.vscode-light .user-icon,
+.vscode-light .ai-code-companion-icon,
+.vscode-high-contrast-light .user-icon,
+.vscode-high-contrast-light .ai-code-companion-icon {
+  color: #2b938e;
+}

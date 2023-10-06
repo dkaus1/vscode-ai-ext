@@ -1,0 +1,365 @@
+:root {
+  --color-lightGray: #7b7b7b;
+  --color-lightBrown: #7a6651;
+}
+
+.hide {
+  display: none;
+}
+
+#chat-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: var(--vscode-editor-background);
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+}
+
+#chat-messages {
+  flex: 1;
+  min-height: 0; /* Ensure the chat history container can shrink */
+  max-height: 100%;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+#chat-input-container {
+  margin-top: auto; /* Push the input box and button to the bottom */
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#chat-input {
+  width: 75%;
+  flex-grow: 1;
+  border: solid 1px var(--vscode-button-hoverBackground);
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+#send-button,
+#cancel-button {
+  width: 65px;
+  min-width: 65px;
+  padding: 5px 10px;
+  font-size: 14px;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: auto auto auto 10px;
+  height: 65px;
+}
+
+.chat-message-container {
+  display: flex;
+  flex-direction: column;
+  border-bottom: dashed 1px var(--color-lightGray);
+  padding: 20px;
+}
+
+/* Add vertical gutter space to Markdown elements */
+#chat-messages {
+  margin-bottom: 16px;
+}
+
+#chat-messages h1,
+#chat-messages h2,
+#chat-messages h3,
+#chat-messages h4,
+#chat-messages h5,
+#chat-messages h6 {
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+#chat-messages p {
+  margin-bottom: 16px;
+}
+
+#chat-messages ul,
+#chat-messages ol {
+  margin-bottom: 16px;
+}
+
+#chat-messages ul li,
+#chat-messages ol li {
+  margin-bottom: 8px;
+}
+
+#chat-messages blockquote {
+  margin: 0 0 16px 0;
+  padding-left: 16px;
+  border-left: 2px solid #ccc;
+}
+
+#chat-messages pre {
+  margin-bottom: 16px;
+}
+
+#chat-messages code {
+  padding: 2px 4px;
+  background-color: var(--color-lightBrown);
+  border-radius: 4px;
+  color: #f2f2f2;
+}
+
+#chat-messages pre[class*="language-"] code {
+  background-color: transparent;
+  color: var(--vscode-textPreformat-foreground);
+}
+
+#chat-messages a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+#chat-messages a:hover {
+  text-decoration: underline;
+}
+
+.user-input {
+  white-space: pre-wrap;
+}
+
+.user-icon,
+.ai-code-companion-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  background-repeat: no-repeat;
+  min-height: 40px;
+  padding-left: 30px;
+  background-position-y: center;
+  color: #3bcdc6;
+}
+
+.ai-code-companion-icon {
+  padding-left: 35px;
+  background-size: 25px;
+  min-height: 50px;
+}
+
+.chat-message {
+  margin-top: 10px;
+  word-wrap: break-word;
+}
+
+.chat-message pre {
+  overflow-x: auto;
+}
+
+.codeblock-header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e1e1e;
+  color: var(--color-lightBrown);
+  padding: 8px 8px 8px 16px;
+  font-weight: bold;
+  border: 0.3em solid var(--color-lightBrown);
+  border-bottom: none;
+  border-radius: 0.5em 0.5em 0 0;
+}
+
+.code-header {
+  margin-right: auto;
+}
+
+.codeblock-button-wrapper {
+  margin-left: auto;
+}
+
+.code-header-button,
+.code-header-button:hover {
+  background-color: transparent;
+  padding: 0px;
+  outline: none;
+  width: 29px;
+  margin-left: 10px;
+}
+
+.code-header-button svg {
+  width: 29px;
+  fill: var(--color-lightBrown);
+}
+
+.insert-code-button svg {
+  fill: none;
+}
+
+.insert-code-button svg path {
+  stroke: var(--color-lightBrown);
+}
+
+.code-header-button:hover svg,
+.code-header-button:focus svg {
+  filter: brightness(1.3);
+}
+
+.code-header-button:active svg {
+  filter: brightness(0.8);
+}
+
+.chat-message pre[class*="language-"] {
+  margin: 0 0 1.2em 0;
+  border-radius: 0 0 0.5em 0.5em;
+}
+
+.tooltip-container {
+  width: 100%;
+  position: relative;
+}
+
+.error-message-box {
+  background-color: #f44336;
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  padding-right: 30px;
+}
+
+.close-button {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: auto;
+  padding: 5px 8px;
+  border-radius: 5px;
+}
+
+.close-button:hover {
+  background-color: #c91d10;
+}
+
+.loader {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 30%;
+  margin: 50px auto;
+  background: linear-gradient(#f07e6e, #84cdfa, #5ad1cd);
+  animation: animate 1.2s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loader span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(#f07e6e, #84cdfa, #5ad1cd);
+}
+
+.loader span:nth-child(1) {
+  filter: blur(5px);
+}
+
+.loader span:nth-child(2) {
+  filter: blur(10px);
+}
+
+.loader span:nth-child(3) {
+  filter: blur(25px);
+}
+
+.loader span:nth-child(4) {
+  filter: blur(50px);
+}
+
+.loader:after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background: #f1f1f1;
+  border: solid white 10px;
+  border-radius: 50%;
+}
+
+#splash-content {
+  margin-top: 20px;
+}
+
+#splash-content p {
+  filter: brightness(0.8);
+}
+
+#splash-content h3 {
+  color: var(--color-lightBrown);
+  font-weight: bold;
+}
+
+#splash-content ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+#splash-content .features li {
+  border: solid 1px var(--color-lightGray);
+  border-radius: 20px;
+  padding: 5px 10px;
+  background-color: var(--color-lightBrown);
+  display: inline-block;
+  color: #f2f2f2;
+  margin: 0px 5px 8px 0px;
+}
+
+#splash-content ul.steps-to-follow li {
+  border: solid 1px var(--color-lightGray);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.splash-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -20px;
+}
+
+#splash-content .splash-heading h3 {
+  margin: 0px;
+}
+
+#continueResponseGeneration {
+  height: 40px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+@media (max-width: 345px) {
+  #send-button,
+  #cancel-button {
+    width: 100%;
+    margin: 10px 0 0 0;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  #chat-input {
+    width: 100%;
+  }
+}
